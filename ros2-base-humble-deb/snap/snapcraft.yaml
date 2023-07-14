@@ -1,0 +1,50 @@
+name: ros2-base-humble
+version: '2.2.0'
+summary: ROS 2 Humble base snap for ctrlX CORE
+description: |
+  Provides ROS 2 Humble for ROS 2 applications running on a for ctrlX CORE.
+
+base: core22
+grade: stable
+confinement: strict
+
+parts:
+  ros-base:
+    plugin: colcon
+    build-packages: [make, gcc, g++]
+    stage-packages: [
+      software-properties-common,
+      ros-humble-ros-base,
+      python3-argcomplete,
+      ca-certificates
+    ]
+    build-environment:
+      - ROS_VERSION: '2'
+      - ROS_DISTRO: humble
+  
+  datalayer:
+    plugin: nil
+    stage-packages:
+      - libzmq5
+      - ctrlx-datalayer
+
+  helper: 
+    plugin: python
+    build-environment:
+      - PYTHONPATH: "$SNAPCRAFT_PART_INSTALL/usr/lib/python3/dist-packages"
+    stage-packages:
+      - python3-wheel
+    python-packages: 
+      - ctrlx-datalayer
+      - empy
+      - numpy
+      - rosdep 
+      - rosdistro
+      - colcon-core
+      - lark
+
+slots:
+  ros-base:
+    interface: content
+    content: executables
+    read: [/]

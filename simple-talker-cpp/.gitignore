@@ -1,0 +1,9 @@
+build/
+install/
+log/
+__pycache__/
+prime/
+parts/
+stage/
+squashfs-root/
+.vscode/settings.json

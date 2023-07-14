@@ -1,0 +1,41 @@
+name: ros2-simple-listener
+version: '0.1'
+summary: Simple ROS 2 listener
+description: |
+  A simple ROS 2 listener to ROS 2 topic 'MinimalPublisher'.
+
+base: core22
+grade: stable
+confinement: strict
+
+parts:
+  ros-app:
+    plugin: dump
+    source: install
+    stage-packages: [libpython3.10]
+    override-build: |
+        snapcraftctl build
+  
+  wrapper-scripts:
+    plugin: dump
+    source: wrapper/
+    organize:
+      ./run.sh : usr/bin/run
+
+apps:
+  subscriber:
+    command: usr/bin/run
+    plugs:
+      - ros-base
+      - network
+      - network-bind
+    daemon: simple
+    passthrough:
+      restart-condition: always
+      restart-delay: 10s
+
+plugs:
+  ros-base:
+    interface: content
+    content: executables
+    target: $SNAP/rosruntime

@@ -1,0 +1,42 @@
+name: ros2-simple-talker-py
+version: '0.1'
+summary: Simple ROS 2 talker
+description: |
+  A simple ROS 2 talker to ROS 2 topic 'MinimalPublisher'.
+
+base: core22
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: strict
+
+parts:
+  # The `source` here is the tarred staging area of the ros-base snap.
+  ros-app:
+    plugin: dump
+    source: install
+    stage-packages: [libpython3.10]
+    override-build: |
+        snapcraftctl build
+
+  wrapper-scripts:
+    plugin: dump
+    source: wrapper/
+    organize:
+      ./run.sh : usr/bin/run
+
+apps:
+  publisher:
+    command: usr/bin/run
+    plugs:
+      - ros-base
+      - network
+      - network-bind
+    daemon: simple
+    passthrough:
+      restart-condition: always
+      restart-delay: 10s
+
+plugs:
+  ros-base:
+    interface: content
+    content: executables
+    target: $SNAP/rosruntime

@@ -1,0 +1,7 @@
+build/
+install/
+log/
+__pycache__/
+prime/
+parts/
+stage/

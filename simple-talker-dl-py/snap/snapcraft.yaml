@@ -1,0 +1,48 @@
+name: ros2-talker-dl-py
+version: '2.2.0'
+summary: Publishes ctrlX Data Layer value to ROS 2
+description: |
+  A ROS 2 talker:
+  Reads ctrlX Data Layer value framework/metrics/system/cpu-utilisation-percent
+  and publishes it to ROS 2 topic 'ctrlXCpuUtilisationPercent'.
+
+base: core22
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: strict
+
+parts:
+  # The `source` here is the tarred staging area of the ros-base snap.
+  ros-app:
+    plugin: dump
+    source: install
+    stage-packages: [libpython3.10]
+    override-build: |
+        snapcraftctl build
+
+  wrapper-scripts:
+    plugin: dump
+    source: wrapper/
+    organize:
+      ./run.sh : usr/bin/run
+
+apps:
+  publisher:
+    command: usr/bin/run
+    plugs:
+      - ros-base
+      - network
+      - network-bind
+    daemon: simple
+    passthrough:
+      restart-condition: always
+      restart-delay: 10s
+
+plugs:
+  ros-base:
+    interface: content
+    content: executables
+    target: $SNAP/rosruntime
+  datalayer:
+    interface: content
+    content: datalayer
+    target: $SNAP_DATA/.datalayer        
