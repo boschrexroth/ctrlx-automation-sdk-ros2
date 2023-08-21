@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Mkdocs
+name: Build Snap
 
 # Controls when the action will run. 
 on:
@@ -23,7 +23,7 @@ jobs:
         with:
           fetch-depth: 0
       -
-        run: sudo snap install snapcraft
+        run: sudo snap install snapcraft --classic
       -
         run: |
           cd simple-listener-py
