@@ -3,9 +3,6 @@ FROM $BASE_IMAGE
 
 WORKDIR /ros_ws
 
-
-
-
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive
 RUN apt-get install -y fuse snapd snap-confine squashfuse sudo init
@@ -18,4 +15,3 @@ VOLUME ["/sys/fs/cgroup"]
 STOPSIGNAL SIGRTMIN+3
 ENTRYPOINT ["/sbin/init"]
 SHELL ["/bin/bash", "-c"] 
-###<-

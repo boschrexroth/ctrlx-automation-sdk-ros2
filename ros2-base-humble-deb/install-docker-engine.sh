@@ -18,12 +18,7 @@ echo \
 # Install Docker Engine --------------------------------
 sudo apt-get update
 
-# List specific versions
-# apt-cache madison docker-ce | awk '{ print $3 }'
-# VERSION_STRING=5:24.0.0-1~ubuntu.22.04~jammy
-# sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-buildx-plugin docker-compose-plugin
-
-# latest
+# Use latest version of docker
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Verify that the Docker Engine installation is successful by running the hello-world image.

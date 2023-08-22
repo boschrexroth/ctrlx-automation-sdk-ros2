@@ -1,10 +1,10 @@
-# Ros2 Listener writes a ctrlX Data Layer value
+# ROS 2 Listener that Writes a ctrlX Data Layer Value (Python)
 
 ## Introduction
 
 This project implements a ROS 2 listener, which receives a ROS 2 message and writes the value into a ctrlX Data Layer node.
 
-[Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-python) was used as template. 
+[Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-python) was used as template.
 
 See also:
 
@@ -14,11 +14,11 @@ See also:
 ## Implementation
 
 * The directory structure is according colcon packages.
-* In setup.py and setup.cfg the [colcon](https://colcon.readthedocs.io/en/released/) package is defined.
-* src/talker/talker/main.py provides the main function
-* src/talker/ros2/datalayer_reader_ros2_publisher.py reads a ctrlX Data LAyer values, creates a ROS 2 message and publishes it under the topic 'ctrlXCpuUtilisationPercent'.
-* src/talker/ctrlx_datalayer/ctrlx_datalayer_helper.py contains helper functions regarding ctrlX Data Layer
-* snap/snapcraft.yaml defines which files are packed into the snap. 
+* In `setup.py` and `setup.cfg` the [colcon](https://colcon.readthedocs.io/en/released/) package is defined.
+* `src/talker/talker/main.py` provides the main function
+* `src/talker/ros2/datalayer_reader_ros2_publisher.py` reads a ctrlX Data Layer values, creates a ROS 2 message and publishes it under the topic `ctrlXCpuUtilisationPercent`.
+* `src/talker/ctrlx_datalayer/ctrlx_datalayer_helper.py` contains helper functions regarding ctrlX Data Layer
+* `snap/snapcraft.yaml` defines which files are packed into the snap.
 
 ## Build process
 
@@ -28,11 +28,11 @@ To build a snap run
 
 The script contains following build steps:
 
-1. Build the colcon package: 
+1. Build the colcon package:
 
     colcon build
 
-2. Clean the snapcraft helper directories: 
+2. Clean the snapcraft helper directories:
 
     snapcraft clean --destructive-mode
 
@@ -44,14 +44,13 @@ Hint: Arm64-cross-build is not supported.
 
 ## Installation and test
 
-The ros2-base snaps must already be installed.
+The `ros2-base` snap must already be installed.
 
-Install the created snap on a ctrlX CORE (virtual or X7).
+Install the created snap on a ctrlX OS.
 
 TODO 
 
-
-It publishes at the ROS 2 topic 'MinimalPublisher'.
+It publishes at the ROS 2 topic `MinimalPublisher`.
 
 The output can be checked with:
 
@@ -59,23 +58,16 @@ The output can be checked with:
 
 ## Build, install and test
 
-With following command you can combine the build, installation and test steps - here the target is a ctrlX CORE<sup>virtual</sup> with Port Forwarding.
+With following command you can combine the build, installation and test steps - here the target is a ctrlX CORE<sup>virtual</sup> with port forwarding.
 
     ../../../public/scripts/build-upload-log-snap.sh -PF
 
-
 ## About
 
-Copyright © 2023 Bosch Rexroth AG. All rights reserved.
+SPDX-FileCopyrightText: Copyright (c) 2023 Bosch Rexroth AG
 
-<https://www.boschrexroth.com>
-
-Bosch Rexroth AG  
-Bgm.-Dr.-Nebel-Str. 2  
-97816 Lohr am Main  
-GERMANY  
+<https://www.boschrexroth.com/en/dc/imprint/>
 
 ## Licenses
 
-SPDX-FileCopyrightText: Bosch Rexroth AG
 SPDX-License-Identifier: MIT

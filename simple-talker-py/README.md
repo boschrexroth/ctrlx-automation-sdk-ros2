@@ -1,12 +1,12 @@
-# Ros2 Simple Talker 
+# ROS 2 Simple Talker (Python)
 
 ## Introduction
 
-This project implements a simple ROS 2 talker, derived from [Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-python). 
+This project implements a simple ROS 2 talker, derived from [Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-python).
 
 The differences to this template project are:
 
-* __ROS 2 runtime functions are provided by the ros2-base snap, which must be preinsalled on the ctrlX.__
+* ROS 2 runtime functions are provided by the `ros2-base` snap, which must be preinstalled on the ctrlX.
 * The project files are packed into a snap.
 
 See also:
@@ -17,12 +17,12 @@ See also:
 ## Implementation
 
 * The directory structure is according colcon packages.
-* In setup.py and setup.cfg the [colcon](https://colcon.readthedocs.io/en/released/) package is defined.
-* The one and only Python script is main_minimal_publisher.py__, stored in the directory src/listener/listener/
-* It contains the main function and a class __MinimalPublisher__, derived from rclpy.node.Node
-* snap/snapcraft.yaml defines which files are packed into the snap. 
+* In `setup.py` and `setup.cfg` the [colcon](https://colcon.readthedocs.io/en/released/) package is defined.
+* The one and only Python script is `main_minimal_subscriber.py`, stored in the directory `src/listener/listener/`
+* It contains the main function and a class `MinimalSubscriber`, derived from `rclpy.node.Node`
+* `snap/snapcraft.yaml` defines which files are packed into the snap.
 
-## Build process
+## Build Process
 
 To build a snap run
 
@@ -30,11 +30,11 @@ To build a snap run
 
 The script contains following build steps:
 
-1. Build the colcon package: 
+1. Build the colcon package:
 
     colcon build
 
-2. Clean the snapcraft helper directories: 
+2. Clean the snapcraft helper directories:
 
     snapcraft clean --destructive-mode
 
@@ -42,15 +42,15 @@ The script contains following build steps:
 
     snapcraft --destructive-mode
 
-Hint: To keep the project simple arm64-cross-build is not supported.
+Hint: To keep the project simple the arm64-cross-build is not supported.
 
-## Installation and test
+## Installation and Test
 
-The ros2-base snaps must already be installed.
+The `ros2-base` snaps must already be installed.
 
-Install the created snap on a ctrlX CORE (virtual or X7).
+Install the created snap on ctrlX OS.
 
-It publishes at the ROS 2 topic 'MinimalPublisher'.
+It publishes at the ROS 2 topic `MinimalPublisher`.
 
 The output can be checked with:
 
@@ -58,23 +58,16 @@ The output can be checked with:
 
 ## Build, install and test
 
-With following command you can combine the build, installation and test steps - here the target is a ctrlX CORE<sup>virtual</sup> with Port Forwarding.
+With following command you can combine the build, installation and test steps - here the target is a ctrlX CORE<sup>virtual</sup> with port forwarding.
 
     ../../../public/scripts/build-upload-log-snap.sh -PF
 
-
 ## About
 
-Copyright © 2023 Bosch Rexroth AG. All rights reserved.
+SPDX-FileCopyrightText: Copyright (c) 2023 Bosch Rexroth AG
 
-<https://www.boschrexroth.com>
-
-Bosch Rexroth AG  
-Bgm.-Dr.-Nebel-Str. 2  
-97816 Lohr am Main  
-GERMANY  
+<https://www.boschrexroth.com/en/dc/imprint/>
 
 ## Licenses
 
-SPDX-FileCopyrightText: Bosch Rexroth AG
 SPDX-License-Identifier: MIT
