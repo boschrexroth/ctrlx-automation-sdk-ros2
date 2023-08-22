@@ -1,14 +1,17 @@
 # ctrlX AUTOMATION Software Development Kit for ROS 2
 
-This is the Software Development Kit (SDK) to build ROS 2 Applications, that can run on industrial devices that are based on the ctrlX OS platform. The **Robot Operating System (ROS)** is an open source robotics software framework that help you build robot applications. **ctrlX OS** is an industrial grade realtime platform based on Linux which is available for several industrial hardware devices and features an app-based modular architecture that allows you to install additional functionality. This includes apps for industrial fieldbus communication, machine automation, programmable logic control (PLC) and other automation software which can also be found ready-to-run in the [ctrlX Store](https://developer.community.boschrexroth.com/).
+This is the Software Development Kit (SDK) to build ROS 2 Applications, that can run on industrial devices that are based on the ctrlX OS platform. 
+
+The **Robot Operating System (ROS)** is an open source robotics software framework that help you build robot applications. 
+**ctrlX OS** is an industrial grade realtime platform based on Linux which is available for several industrial hardware devices and features an app-based modular architecture that allows you to install additional functionality. This includes apps for industrial fieldbus communication, machine automation, programmable logic control (PLC) and other automation software which can also be found ready-to-run in the [ctrlX Store](https://developer.community.boschrexroth.com/).
 
 ## Getting Started
 
 As a prerequisite you should get yourself familiar with:
 
 * ROS 2 and its underlying architecture using the official ROS 2 documentation at: <https://www.ros.org/blog/getting-started/>
-* The [ctrlX AUTOMATION Ecosystem](https://ctrlx-automation.com/) and the architecture of ctrlX OS as well as devices which are capable to run ctrlX OS. E.g. **ctrlX CORE** devices from [Bosch Rexroth](https://www.boschrexroth.com/).
-* The [ctrlX AUTOMATION SDK](https://github.com/boschrexroth/ctrlx-automation-sdk) which is the underlying SDK that allows you to create any kind of App for ctrlX OS and is the foundation for the **ctrlX AUTOMATION Software Development Kit for ROS 2**.
+* The [ctrlX AUTOMATION Ecosystem](https://ctrlx-automation.com/) and the architecture of ctrlX OS as well as devices which are capable to run ctrlX OS. E.g. ctrlX CORE devices from [Bosch Rexroth](https://www.boschrexroth.com/).
+* The [ctrlX AUTOMATION SDK](https://github.com/boschrexroth/ctrlx-automation-sdk) which is the underlying SDK that allows you to create any kind of App for ctrlX OS and is the foundation for the ctrlX AUTOMATION Software Development Kit for ROS 2.
 
 ## Usage
 
@@ -18,7 +21,8 @@ ctrlX OS, Ubuntu Core, as well as ROS 2 are released as *distributions*. This re
 
 * ctrlX OS 2.x (Includes Ubuntu Core 22)
 * ROS 2 [Humble Hawksbill](https://docs.ros.org/en/humble/)
-* [Visual Studio Code](https://code.visualstudio.com/)
+
+All projects use [Visual Studio Code](https://code.visualstudio.com/) as editor.
 
 ### ROS 2 Humble Base Snap
 
@@ -34,28 +38,28 @@ This SDK contains also multiple project examples to show the usage of ROS 2. All
 
 ### ROS 2 Humble Applications in C++
 
-#### Writing a simple publisher and subscriber (C++)
+#### Writing a Simple Publisher and Subscriber (C++)
 
 This example is based on the official ROS 2 Tutorial and adjusted to run on ctrlX OS together with the *base snap*. You can find the original source code at [ROS 2 Humble Tutorials - Writing a simple publisher and subscriber (C++)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-c)
 
-* [`simple-talker-cpp/`](simple-talker-cpp/readme.md) contains the snap version of the described publisher (talker)
-* [`simple-listener-cpp/`](simple-listener-cpp/readme.md) contains the snap version of the described subscriber (listener)
+* [`simple-talker-cpp/`](simple-talker-cpp/README.md) contains the snap version of the described publisher (talker)
+* [`simple-listener-cpp/`](simple-listener-cpp/README.md) contains the snap version of the described subscriber (listener)
 
 ### ROS 2 Humble Applications in Python
 
-#### Writing a simple publisher and subscriber (Python)
+#### Writing a Simple Publisher and Subscriber (Python)
 
 This example is based on the official ROS 2 Tutorial and adjusted to run on ctrlX OS together with the *base snap*. You can find the original source code at [ROS 2 Humble Tutorials - Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html)
 
-* [`simple-talker-py/`](simple-talker-py/readme.md) contains the snap version of the described publisher (talker)
-* [`simple-listener-py/`](simple-listener-py/readme.md) contains the snap version of the described subscriber (listener)
+* [`simple-talker-py/`](simple-talker-py/README.md) contains the snap version of the described publisher (talker)
+* [`simple-listener-py/`](simple-listener-py/README.md) contains the snap version of the described subscriber (listener)
 
-#### Writing a simple publisher and subscriber with ctrlX Data Layer access (Python)
+#### Writing a Simple Publisher and Subscriber with ctrlX Data Layer Access (Python)
 
 Both sample projects are based on the same official ROS 2 tutorial as mentioned above. Additionally, the example is extended with access to the ctrlX Data Layer using the ctrlX SDK.
 
-* [`simple-talker-dl-py/`](simple-talker-dl-py/readme.md) Reads a Data Layer value and publishes it as ROS 2 message under a specific topic.
-* [`simple-listener-dl-py/`](simple-listener-dl-py/readme.md) Subscribes messages of the topic, receives the value and writes it into the ctrlX Data Layer.
+* [`simple-talker-dl-py/`](simple-talker-dl-py/README.md) Reads a Data Layer value and publishes it as ROS 2 message under a specific topic.
+* [`simple-listener-dl-py/`](simple-listener-dl-py/README.md) Subscribes messages of the topic, receives the value and writes it into the ctrlX Data Layer.
 
 ## Support
 
