@@ -32,7 +32,7 @@ jobs:
         with:
           fetch-depth: 0
       -
-        run: sudo snap install snapcraft --classic
+        run: sudo snap install snapcraft --channel=6.x/stable --classic
       -
         run: |
           cd simple-listener-py
