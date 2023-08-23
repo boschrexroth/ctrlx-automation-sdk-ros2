@@ -31,9 +31,6 @@ jobs:
           cd simple-listener-py
           ./build-snap-amd64.sh
       - run: |
-          cd ros2-base-humble-deb
-          ./build-snap-amd64.sh
-      - run: |
           cd simple-listener-cpp
           ./build-snap-amd64.sh
       - run: |
