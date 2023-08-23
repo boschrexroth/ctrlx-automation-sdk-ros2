@@ -27,6 +27,7 @@ jobs:
         with:
           fetch-depth: 0
       - run: sudo snap install snapcraft --channel=6.x/stable --classic
+      - run: rosdep update
       - run: |
           cd simple-listener-py
           ./build-snap-amd64.sh
