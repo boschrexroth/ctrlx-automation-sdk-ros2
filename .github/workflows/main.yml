@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  SetupEnv:
+  SetupAndBuild:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -22,19 +22,11 @@ jobs:
       - name: Setup ROS
         uses: ros-tooling/setup-ros@v0.7
       - run: vcs --help
-      
-  BuildSnaps:
-    runs-on: ubuntu-latest
-    steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      -
-        run: sudo snap install snapcraft --channel=6.x/stable --classic
-      -
-        run: |
+      - run: sudo snap install snapcraft --channel=6.x/stable --classic
+      - run: |
           cd simple-listener-py
           ./build-snap-amd64.sh
-     
