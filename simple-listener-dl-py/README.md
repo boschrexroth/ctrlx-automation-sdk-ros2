@@ -48,19 +48,11 @@ The `ros2-base` snap must already be installed.
 
 Install the created snap on a ctrlX OS.
 
-TODO 
-
 It publishes at the ROS 2 topic `MinimalPublisher`.
 
 The output can be checked with:
 
     sudo snap logs -f ros2-simple-talker
-
-## Build, install and test
-
-With following command you can combine the build, installation and test steps - here the target is a ctrlX CORE<sup>virtual</sup> with port forwarding.
-
-    ../../../public/scripts/build-upload-log-snap.sh -PF
 
 ## About
 
