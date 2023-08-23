@@ -68,4 +68,4 @@ SPDX-FileCopyrightText: Copyright (c) 2023 Bosch Rexroth AG
 
 ## Licenses
 
-SPDX-License-Identifier: MIT
+SPDX-License-Identifier: Apache-2.0
