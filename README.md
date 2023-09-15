@@ -89,7 +89,7 @@ Any use of the source code and related documents of this repository in applicati
 
 SPDX-FileCopyrightText: Copyright (c) 2023 Bosch Rexroth AG
 
-https://www.boschrexroth.com/en/dc/imprint/
+<https://www.boschrexroth.com/en/dc/imprint/>
 
 
 ## Licenses
