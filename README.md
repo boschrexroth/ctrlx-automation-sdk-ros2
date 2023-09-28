@@ -82,7 +82,7 @@ Any use of the source code and related documents of this repository in applicati
 ## Changelog
 
 ```text
-* 2023-09-01: 1.0.0 - Initial release for ROS 2 Humble Hawksbill.
+* 2023-09-01: 2.0.0 - Initial release for ROS 2 Humble Hawksbill.
 ```
 
 ## About
