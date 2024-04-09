@@ -16,8 +16,8 @@ parts:
     plugin: dump
     source: install
     stage-packages: [libpython3.10]
-    override-build: |
-        snapcraftctl build
+    override-build: |   
+        craftctl default
 
   wrapper-scripts:
     plugin: dump
