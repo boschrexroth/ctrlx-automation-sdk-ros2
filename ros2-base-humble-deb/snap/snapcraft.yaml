@@ -31,7 +31,7 @@ parts:
   helper: 
     plugin: python
     build-environment:
-      - PYTHONPATH: "$SNAPCRAFT_PART_INSTALL/usr/lib/python3/dist-packages"
+      - PYTHONPATH: "$CRAFT_PART_INSTALL/usr/lib/python3/dist-packages"
     stage-packages:
       - python3-wheel
     python-packages: 
