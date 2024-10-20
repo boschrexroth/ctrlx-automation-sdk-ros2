@@ -64,7 +64,7 @@ With following command you can combine the build, installation and test steps - 
 
 ## About
 
-SPDX-FileCopyrightText: Copyright (c) 2023 Bosch Rexroth AG
+SPDX-FileCopyrightText: Copyright (c) 2024 Bosch Rexroth AG
 
 <https://www.boschrexroth.com/en/dc/imprint/>
 

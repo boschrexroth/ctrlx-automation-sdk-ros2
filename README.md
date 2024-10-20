@@ -1,9 +1,11 @@
 # ctrlX AUTOMATION Software Development Kit for ROS 2
 
-This is the Software Development Kit (SDK) to build ROS 2 Applications, that can run on industrial devices that are based on the ctrlX OS platform. 
+This is the Software Development Kit (SDK) to build ROS 2 Applications, that can run on industrial devices that are based on the ctrlX OS platform.
 
-The **Robot Operating System (ROS)** is an open source robotics software framework that help you build robot applications. 
+The **Robot Operating System (ROS)** is an open source robotics software framework that help you build robot applications.
 **ctrlX OS** is an industrial grade realtime platform based on Linux which is available for several industrial hardware devices and features an app-based modular architecture that allows you to install additional functionality. This includes apps for industrial fieldbus communication, machine automation, programmable logic control (PLC) and other automation software which can also be found ready-to-run in the [ctrlX Store](https://developer.community.boschrexroth.com/).
+
+Please note, that this is the first version of the ROS 2 SDK. You may expect more samples and extensions over the course of the next months.
 
 ## Getting Started
 
@@ -11,7 +13,7 @@ As a prerequisite you should get yourself familiar with:
 
 * ROS 2 and its underlying architecture using the official ROS 2 documentation at: <https://www.ros.org/blog/getting-started/>
 * The [ctrlX AUTOMATION Ecosystem](https://ctrlx-automation.com/) and the architecture of ctrlX OS as well as devices which are capable to run ctrlX OS. E.g. ctrlX CORE devices from [Bosch Rexroth](https://www.boschrexroth.com/).
-* The [ctrlX AUTOMATION SDK](https://github.com/boschrexroth/ctrlx-automation-sdk) which is the underlying SDK that allows you to create any kind of App for ctrlX OS and is the foundation for the ctrlX AUTOMATION Software Development Kit for ROS 2.
+* The [ctrlX AUTOMATION SDK](https://github.com/boschrexroth/ctrlx-automation-sdk) which is the underlying SDK that allows you to create any kind of App for ctrlX OS and is the foundation for the ctrlX AUTOMATION Software Development Kit for ROS 2. [Link to SDK Documentation](https://boschrexroth.github.io/ctrlx-automation-sdk/)
 
 ## Usage
 
@@ -38,12 +40,19 @@ This SDK contains also multiple project examples to show the usage of ROS 2. All
 
 ### ROS 2 Humble Applications in C++
 
-#### Writing a Simple Publisher and Subscriber (C++)
+#### Learn how to package your application as snap
 
 This example is based on the official ROS 2 Tutorial and adjusted to run on ctrlX OS together with the *base snap*. You can find the original source code at [ROS 2 Humble Tutorials - Writing a simple publisher and subscriber (C++)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-c)
 
 * [`simple-talker-cpp/`](simple-talker-cpp/README.md) contains the snap version of the described publisher (talker)
 * [`simple-listener-cpp/`](simple-listener-cpp/README.md) contains the snap version of the described subscriber (listener)
+
+#### Learn how to access the ctrlX Data Layer from your application
+
+the ctrlX Data Layer is the realtime message broker that runs on ctrlX OS. It is used by all ctrlX Apps to publish and exchange variables, types, methods and programs. In the ctrlX Data Layer you can find all device, process, fieldbus and periphery data. You can connect to the ctrlX Data Layer via TCP/IP or IPC.
+
+* [`simple-talker-dl-cpp/`](simple-talker-dl-cpp/README.md) read from ctrlX Data Layer and publish as ROS message (talker)
+* [`simple-listener-dl-cpp/`](simple-listener-dl-cpp/README.md) subscribe to ROS message and publish in ctrlX Data Layer (listener)
 
 ### ROS 2 Humble Applications in Python
 
@@ -87,7 +96,7 @@ Any use of the source code and related documents of this repository in applicati
 
 ## About
 
-SPDX-FileCopyrightText: Copyright (c) 2023 Bosch Rexroth AG
+SPDX-FileCopyrightText: Copyright (c) 2024 Bosch Rexroth AG
 
 <https://www.boschrexroth.com/en/dc/imprint/>
 

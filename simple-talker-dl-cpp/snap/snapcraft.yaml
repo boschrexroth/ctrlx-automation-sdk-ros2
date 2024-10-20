@@ -1,0 +1,48 @@
+name: ros2-simple-talker-dl-cpp
+version: '2.2.0'
+summary: Snap with simple ROS 2 listener
+description: |
+  A simple ROS 2 listener which receives ROS 2 messages on topic 'ros2_simple_cpp'.
+
+base: core22
+grade: stable
+confinement: strict
+
+parts:
+  ros-app:
+    plugin: dump
+    source: install
+    stage-packages:
+      - libzmq5
+      - ctrlx-datalayer
+    override-build: |
+        snapcraftctl build
+
+  wrapper-scripts:
+    plugin: dump
+    source: wrapper/
+    organize:
+      ./run-listener.sh : usr/bin/run-listener
+
+apps:
+  listener:
+    command: usr/bin/run-listener
+    plugs:
+      - ros-base
+      - network
+      - network-bind
+    daemon: simple
+    passthrough:
+      restart-condition: always
+      restart-delay: 10s
+
+plugs:
+  ros-base:
+    interface: content
+    content: executables
+    target: $SNAP/rosruntime
+    
+  datalayer:
+    interface: content
+    content: datalayer
+    target: $SNAP_DATA/.datalayer
