@@ -3,8 +3,13 @@ project(app)
 set(TARGET_PROJECT_NAME listener)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic)
+  add_compile_options(-Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-unused-function)
 endif()
+
+###############################################################################
+# SHM as Default transport
+###############################################################################
+option(SHM_TRANSPORT_DEFAULT "Add SHM transport to the default transports" OFF) # -> "Permission denied -> Function compute_per_allocation_extra_size"
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
@@ -65,8 +70,8 @@ target_link_libraries(${TARGET_PROJECT_NAME} -Wl,--no-undefined)
 target_link_libraries(${TARGET_PROJECT_NAME}
   libcomm_datalayer.so
   pthread
-  systemd
-  zmq
+#  systemd
+#  zmq
   ssl
   crypto
 )

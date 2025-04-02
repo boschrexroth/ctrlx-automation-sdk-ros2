@@ -8,10 +8,5 @@ else
     exit 1
 fi
 
-rm -rf install/
-mkdir -p install/app
-rm -rf build/
-rm -rf log/
-
 source /opt/ros/humble/setup.bash
 colcon build

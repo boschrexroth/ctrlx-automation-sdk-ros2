@@ -91,15 +91,18 @@ Any use of the source code and related documents of this repository in applicati
 ## Changelog
 
 ```text
+* 2025-01-16: 2.4.0 - update to snapcraft version 7.x
+* 2024-12-06: 2.3.0 - update and fixed runtime environment
+* 2024-12-05: 2.2.0 - Merge with https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+* 2024-06-28: 2.0.1 - Improve documentation, use symbolic links for build scripts
 * 2023-09-01: 2.0.0 - Initial release for ROS 2 Humble Hawksbill.
 ```
 
 ## About
 
-SPDX-FileCopyrightText: Copyright (c) 2024 Bosch Rexroth AG
+SPDX-FileCopyrightText: Copyright (c) 2025 Bosch Rexroth AG
 
 <https://www.boschrexroth.com/en/dc/imprint/>
-
 
 ## Licenses
 

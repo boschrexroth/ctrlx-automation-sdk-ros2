@@ -1,5 +1,5 @@
 name: ros2-talker-dl-py
-version: '2.2.0'
+version: '2.4.0'
 summary: Publishes ctrlX Data Layer value to ROS 2
 description: |
   A ROS 2 talker:
@@ -9,6 +9,13 @@ description: |
 base: core22
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: strict
+type: app
+
+architectures:
+  - build-on: [amd64, arm64]
+    build-for: [amd64]
+  - build-on: [amd64, arm64]
+    build-for: [arm64]
 
 parts:
   # The `source` here is the tarred staging area of the ros-base snap.
@@ -17,7 +24,7 @@ parts:
     source: install
     stage-packages: [libpython3.10]
     override-build: |
-        snapcraftctl build
+      craftctl default
 
   wrapper-scripts:
     plugin: dump
@@ -45,4 +52,9 @@ plugs:
   datalayer:
     interface: content
     content: datalayer
-    target: $SNAP_DATA/.datalayer        
+    target: $SNAP_DATA/.datalayer
+
+lint:
+  ignore:
+    - library:
+      - usr/lib/x86_64-linux-gnu/libpython3.10.so.*    

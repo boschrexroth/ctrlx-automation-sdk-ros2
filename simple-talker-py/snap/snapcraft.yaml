@@ -1,5 +1,5 @@
 name: ros2-simple-talker-py
-version: '0.1'
+version: '2.4.0'
 summary: Simple ROS 2 talker
 description: |
   A simple ROS 2 talker to ROS 2 topic 'MinimalPublisher'.
@@ -7,6 +7,13 @@ description: |
 base: core22
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: strict
+type: app
+
+architectures:
+  - build-on: [amd64, arm64]
+    build-for: [amd64]
+  - build-on: [amd64, arm64]
+    build-for: [arm64]
 
 parts:
   # The `source` here is the tarred staging area of the ros-base snap.
@@ -15,7 +22,7 @@ parts:
     source: install
     stage-packages: [libpython3.10]
     override-build: |
-        snapcraftctl build
+      craftctl default
 
   wrapper-scripts:
     plugin: dump
@@ -40,3 +47,8 @@ plugs:
     interface: content
     content: executables
     target: $SNAP/rosruntime
+
+lint:
+  ignore:
+    - library:
+      - usr/lib/x86_64-linux-gnu/libpython3.10.so.*     

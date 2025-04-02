@@ -1,5 +1,5 @@
 name: ros2-simple-talker-cpp
-version: '2.2.0'
+version: '2.4.0'
 summary: Snap with simple ROS 2 talker
 description: |
   A simple ROS 2 talker publishes messages on topic 'ros2_simple_cpp'.
@@ -7,6 +7,12 @@ description: |
 base: core22
 grade: stable
 confinement: strict
+type: app
+architectures:
+  - build-on: [amd64, arm64]
+    build-for: [amd64]
+  - build-on: [amd64, arm64]
+    build-for: [arm64]
 
 parts:
   ros-app:

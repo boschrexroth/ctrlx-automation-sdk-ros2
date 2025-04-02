@@ -15,23 +15,21 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include <filesystem>
+#include <csignal>
+#include <thread>
+#include <iostream>
 
+#include <stdio.h>
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
 
+#include "comm/datalayer/datalayer.h"
+#include "comm/datalayer/datalayer_system.h"
 
 using namespace std::chrono_literals;
 
-#include <filesystem>
-#include <csignal>
-#include <thread>
-
-#include <stdio.h>
-#include <iostream>
-
-#include "comm/datalayer/datalayer.h"
-#include "comm/datalayer/datalayer_system.h"
 
 
 // Add some signal Handling so we are able to abort the program with sending sigint
@@ -88,11 +86,13 @@ static std::string getConnectionString(
 
 class MinimalPublisher : public rclcpp::Node
 {
-public:
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr m_publisher;
+
+  public:
   MinimalPublisher()
   : Node("minimal_publisher")
   {
-    publisher_ = this->create_publisher<std_msgs::msg::String>("ros2_simple_talker_cpp", 10);
+    m_publisher = this->create_publisher<std_msgs::msg::String>("ros2_simple_talker_cpp", 10);
   }
 
   /// @brief 
@@ -102,15 +102,13 @@ public:
     auto message = std_msgs::msg::String();
     message.data = "CPU Percentage: " + input;
     RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
-    publisher_->publish(message);
+    m_publisher->publish(message);
   }
-  rclcpp::TimerBase::SharedPtr timer_;
-  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
-  size_t count_;
 };
 
 int main(int argc, char * argv[])
 {
+  std::signal(SIGINT, signalHandler);
    // Initialize ROS 2
   rclcpp::init(argc, argv);
   MinimalPublisher pippo;
@@ -124,7 +122,7 @@ int main(int argc, char * argv[])
   auto dataLayerClient = datalayerSystem.factory()->createClient(connectionString);
 
   int counter = 1;
-  while (dataLayerClient->isConnected())
+  while (dataLayerClient->isConnected() && g_endProcess == false)
   {
     std::cout << "Loop #" << counter++ << std::endl;
 

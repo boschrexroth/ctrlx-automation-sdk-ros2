@@ -27,12 +27,16 @@ using namespace std::chrono_literals;
 
 class MinimalPublisher : public rclcpp::Node
 {
+  rclcpp::TimerBase::SharedPtr m_timer;
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr m_publisher;
+  size_t m_count;
+
 public:
   MinimalPublisher()
-  : Node("minimal_publisher"), count_(0)
+  : Node("minimal_publisher"), m_count(0)
   {
-    publisher_ = this->create_publisher<std_msgs::msg::String>("ros2_simple_talker_cpp", 10);
-    timer_ = this->create_wall_timer(
+    m_publisher = this->create_publisher<std_msgs::msg::String>("ros2_simple_talker_cpp", 10);
+    m_timer = this->create_wall_timer(
       500ms, std::bind(&MinimalPublisher::timer_callback, this));
   }
 
@@ -40,13 +44,10 @@ private:
   void timer_callback()
   {
     auto message = std_msgs::msg::String();
-    message.data = "Hello, world! " + std::to_string(count_++);
+    message.data = "Hello, world! " + std::to_string(m_count++);
     RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
-    publisher_->publish(message);
+    m_publisher->publish(message);
   }
-  rclcpp::TimerBase::SharedPtr timer_;
-  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
-  size_t count_;
 };
 
 int main(int argc, char * argv[])
