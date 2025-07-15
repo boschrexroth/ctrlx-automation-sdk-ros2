@@ -22,6 +22,9 @@ jobs:
     steps:
       - name: Setup ROS
         uses: ros-tooling/setup-ros@v0.7
+        env:
+          SNAPCRAFT_BUILD_ENVIRONMENT: host
+          SNAPCRAFT_ENABLE_EXPERIMENTAL_TARGET_ARCH: 1
       - run: vcs --help
 
       - name: Checkout
@@ -34,6 +37,11 @@ jobs:
 
       - name: Update ROS development
         run: rosdep update
+
+      - name: Set up Snapcraft env
+        run: |
+          echo "SNAPCRAFT_BUILD_ENVIRONMENT=host" >> "$GITHUB_ENV"
+          echo "SNAPCRAFT_ENABLE_EXPERIMENTAL_TARGET_ARCH=1" >> "$GITHUB_ENV"
 
       - run: |
           cd simple-listener-py
