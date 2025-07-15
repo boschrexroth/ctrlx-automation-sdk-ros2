@@ -2,7 +2,7 @@
 
 name: Build Snap
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
@@ -15,25 +15,26 @@ on:
 
 jobs:
   SetupAndBuild:
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
     steps:
       - name: Setup ROS
         uses: ros-tooling/setup-ros@v0.7
       - run: vcs --help
-      
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - name: Install snapcraft
         run: sudo snap install snapcraft --channel=7.x/stable --classic
-      
-      - name: Update ROS development 
+
+      - name: Update ROS development
         run: rosdep update
-      
+
       - run: |
           cd simple-listener-py
           ./build-snap-amd64.sh
