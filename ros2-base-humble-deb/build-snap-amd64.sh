@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
-snapcraft clean --destructive-mode
-snapcraft --destructive-mode
+sudo snapcraft clean
+sudo snapcraft --build-for=amd64 --verbosity=verbose

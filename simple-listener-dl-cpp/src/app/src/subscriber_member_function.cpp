@@ -16,31 +16,21 @@
 #include <filesystem>
 #include <csignal>
 #include <thread>
-
 #include <functional>
 #include <memory>
-#include "ctrlx_datalayer_helper.h"
+
+#include <stdio.h>
+
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
-
-using std::placeholders::_1;
-#include <stdio.h>
-#include <iostream>
 
 #include "comm/datalayer/datalayer.h"
 #include "comm/datalayer/datalayer_system.h"
 
-// Add some signal Handling so we are able to abort the program with sending sigint
-static bool g_endProcess = false;
+#include "ctrlx_datalayer_helper.h"
 
-static void signalHandler(int signal)
-{
-  std::cout << "signal: " << signal << std::endl;
-  g_endProcess = true;
-  // Clean up datalayer instances so that process ends properly
-  // Attention: Doesn't return if any provider or client instance is still runnning
+using std::placeholders::_1;
 
-}
 
 using comm::datalayer::IProviderNode;
 
@@ -115,45 +105,56 @@ public:
 
 class MinimalSubscriber : public rclcpp::Node
 {
+  comm::datalayer::Variant m_myString;
+  comm::datalayer::DatalayerSystem m_datalayerSystem;
+  std::unique_ptr<comm::datalayer::IProvider> m_provider;
+  std::unique_ptr<MyProviderNode> m_pippo;
+  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr m_subscription;
 
 public:
-  comm::datalayer::DatalayerSystem datalayerSystem;
-  comm::datalayer::IProvider* provider;
-  comm::datalayer::Variant myString;
-  MyProviderNode *pippo = new MyProviderNode(myString);
 
   MinimalSubscriber()
   : Node("minimal_subscriber")
+  , m_pippo(std::make_unique<MyProviderNode>(MyProviderNode(m_myString)))
   { 
-    subscription_ = this->create_subscription<std_msgs::msg::String>(
+    m_subscription = this->create_subscription<std_msgs::msg::String>(
       "ros2_simple_talker_cpp", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
       
     // Starts the ctrlX Data Layer system without a new broker because one broker is already running on ctrlX CORE  
-    datalayerSystem.start(false);
-    provider = getProvider(datalayerSystem); // ctrlX CORE (virtual)
-    pippo->setString("No Message yet");
+    m_datalayerSystem.start(false);
+    m_provider.reset(getProvider(m_datalayerSystem)); // ctrlX CORE (virtual)
+    m_pippo->setString("No Message yet");
     std::cout << "INFO Register node 'ros/listenercpp/mymessage'  " << std::endl;
-    comm::datalayer::DlResult result = provider->registerNode("ros/listenercpp/mymessage",pippo);
+    comm::datalayer::DlResult result = m_provider->registerNode("ros/listenercpp/mymessage",m_pippo.get());
     if (STATUS_FAILED(result))
     {
       std::cout << "WARN Register node 'sdk-cpp-registernode/myString' failed with: " << result.toString() << std::endl;
     }
   }
 
+  ~MinimalSubscriber() 
+  {
+    std::cout << __func__ << std::endl;    
+    m_provider->stop();
+    m_provider = nullptr;
+    m_datalayerSystem.stop();
+  }
+
 private:
   void topic_callback(const std_msgs::msg::String & msg) const
   {
     RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg.data.c_str());
-    pippo->setString( msg.data.c_str());
+    m_pippo->setString( msg.data.c_str() );
   }
-
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
 };
 
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<MinimalSubscriber>());
+  {
+    std::shared_ptr<MinimalSubscriber> node = std::make_shared<MinimalSubscriber>();
+    rclcpp::spin(node);
+  }
   rclcpp::shutdown();
   return 0;
 }

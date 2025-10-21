@@ -65,8 +65,6 @@ target_link_libraries(${TARGET_PROJECT_NAME} -Wl,--no-undefined)
 target_link_libraries(${TARGET_PROJECT_NAME}
   libcomm_datalayer.so
   pthread
-  systemd
-  zmq
   ssl
   crypto
 )
