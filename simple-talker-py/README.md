@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project implements a simple ROS 2 talker, derived from [Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-python).
+This project implements a simple ROS 2 talker, derived from [Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-python).
 
 The differences to this template project are:
 
@@ -12,7 +12,7 @@ The differences to this template project are:
 See also:
 
 * [Canonical Snapcraft - Deploying robotics applications](https://snapcraft.io/docs/robotics)
-* [Canonical - How to build a snap using ROS 2 Humble](https://canonical.com/blog/how-to-build-a-snap-using-ros-2-humble)
+* [Canonical - How to build a snap using ROS 2 Jazzy](https://canonical.com/blog/how-to-build-a-snap-using-ros-2-jazzy)
 
 ## Implementation
 

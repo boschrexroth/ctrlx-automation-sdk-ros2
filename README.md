@@ -21,16 +21,16 @@ This SDK builds on top of the [ctrlX AUTOMATION SDK](https://github.com/boschrex
 
 ctrlX OS, Ubuntu Core, as well as ROS 2 are released as *distributions*. This release of the SDK is intended to be used with:
 
-* ctrlX OS 2.x (Includes Ubuntu Core 22)
-* ROS 2 [Humble Hawksbill](https://docs.ros.org/en/humble/)
+* ctrlX OS 4.x (Includes Ubuntu Core 24)
+* ROS 2 [Jazzy Jalisco](https://docs.ros.org/en/jazzy/)
 
 All projects use [Visual Studio Code](https://code.visualstudio.com/) as editor.
 
-### ROS 2 Humble Base Snap
+### ROS 2 Base Snap
 
 To build and deploy a ROS 2 application to ctrlX OS it needs to be package as [snap](https://ubuntu.com/core/services/guide/snaps-intro). In order to make your development process as efficient as possible we recommend splitting your ROS 2 deployment into at least two snaps. A so-called *base snap* is used to encapsulate the ROS 2 runtime as well as libraries which are dependencies to your application. The *base snap* is installed on ctrlX OS once and provides the compiled runtime and libraries to one or more ROS 2 application snaps which hold your business logic. Following this approach you can reduce build times and resource footprint on the device by sharing the ROS 2 dependencies.
 
-For details have a look at the instructions for the [ROS 2 Humble Base Snap](ros2-base-humble-deb/README.md) which also shows you how to compile ROS 2 for ctrlX OS.
+For details have a look at the instructions for the [ROS 2 Jazzy Base Snap](ros2-base-jazzy-deb/README.md) which also shows you how to compile ROS 2 for ctrlX OS.
 
 If you nevertheless want to go with a single app, then use the *base snap* and integrate your ROS 2 application directly.
 
@@ -38,11 +38,11 @@ If you nevertheless want to go with a single app, then use the *base snap* and i
 
 This SDK contains also multiple project examples to show the usage of ROS 2. All examples build on top of the *base snap*.
 
-### ROS 2 Humble Applications in C++
+### ROS 2 Applications in C++
 
 #### Learn how to package your application as snap
 
-This example is based on the official ROS 2 Tutorial and adjusted to run on ctrlX OS together with the *base snap*. You can find the original source code at [ROS 2 Humble Tutorials - Writing a simple publisher and subscriber (C++)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-c)
+This example is based on the official ROS 2 Tutorial and adjusted to run on ctrlX OS together with the *base snap*. You can find the original source code at [ROS 2 Jazzy Tutorials - Writing a simple publisher and subscriber (C++)](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-c)
 
 * [`simple-talker-cpp/`](simple-talker-cpp/README.md) contains the snap version of the described publisher (talker)
 * [`simple-listener-cpp/`](simple-listener-cpp/README.md) contains the snap version of the described subscriber (listener)
@@ -54,11 +54,11 @@ the ctrlX Data Layer is the realtime message broker that runs on ctrlX OS. It is
 * [`simple-talker-dl-cpp/`](simple-talker-dl-cpp/README.md) read from ctrlX Data Layer and publish as ROS message (talker)
 * [`simple-listener-dl-cpp/`](simple-listener-dl-cpp/README.md) subscribe to ROS message and publish in ctrlX Data Layer (listener)
 
-### ROS 2 Humble Applications in Python
+### ROS 2 Applications in Python
 
 #### Writing a Simple Publisher and Subscriber (Python)
 
-This example is based on the official ROS 2 Tutorial and adjusted to run on ctrlX OS together with the *base snap*. You can find the original source code at [ROS 2 Humble Tutorials - Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html)
+This example is based on the official ROS 2 Tutorial and adjusted to run on ctrlX OS together with the *base snap*. You can find the original source code at [ROS 2 Jazzy Tutorials - Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/Jazzy/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html)
 
 * [`simple-talker-py/`](simple-talker-py/README.md) contains the snap version of the described publisher (talker)
 * [`simple-listener-py/`](simple-listener-py/README.md) contains the snap version of the described subscriber (listener)
@@ -91,6 +91,8 @@ Any use of the source code and related documents of this repository in applicati
 ## Changelog
 
 ```text
+* 2026-02-05: 3.1.0 - Add Remote Scheduler example
+* 2026-01-17: 3.0.0 - Initial release for ROS 2 Jazzy Jalisco.
 * 2025-01-16: 2.4.0 - update to snapcraft version 7.x
 * 2024-12-06: 2.3.0 - update and fixed runtime environment
 * 2024-12-05: 2.2.0 - Merge with https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
@@ -100,7 +102,7 @@ Any use of the source code and related documents of this repository in applicati
 
 ## About
 
-SPDX-FileCopyrightText: Copyright (c) 2025 Bosch Rexroth AG
+SPDX-FileCopyrightText: Copyright (c) 2026 Bosch Rexroth AG
 
 <https://www.boschrexroth.com/en/dc/imprint/>
 

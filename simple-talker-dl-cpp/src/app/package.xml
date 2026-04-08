@@ -3,7 +3,7 @@
 <package format="3">
   <name>app</name>
   <version>2.2.0</version>
-  <description>Simple ROS 2 subscriber (listener) in cpp</description>
+  <description>Simple ROS 2 subscriber (talker) in cpp</description>
   <maintainer email="github@boschrexroth.com">boschrexroth</maintainer>
   <license>MIT License</license>
 

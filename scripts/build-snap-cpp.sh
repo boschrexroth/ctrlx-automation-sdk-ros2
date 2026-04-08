@@ -8,7 +8,7 @@ mkdir -p install/app
 rm -rf build/
 rm -rf log/
 
-source ${ROOT_DIR}/scripts/colcon-build.sh
+source "${ROOT_DIR}"/scripts/colcon-build.sh
 
 if [ $? -eq 0 ]
 then
@@ -17,7 +17,5 @@ else
     exit 1
 fi
 
-source ${ROOT_DIR}/scripts/prepare-build-snap.sh
-
-sudo snapcraft clean
-sudo snapcraft --build-for=amd64 --verbosity=verbose --destructive-mode
+snapcraft clean
+snapcraft pack --build-for=amd64 --verbosity=verbose

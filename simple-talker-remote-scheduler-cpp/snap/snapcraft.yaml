@@ -1,0 +1,73 @@
+name: ros2-simple-talker-rs-cpp
+version: 3.1.0
+summary: Snap with simple ROS 2 talker (Remote Scheduler)
+description: |
+  A simple ROS 2 talker which receives ROS 2 messages on topic 'ros2_simple_cpp'.
+
+base: core24
+grade: stable
+confinement: strict
+type: app
+
+title: ROS2 Jazzy Simple Talker
+contact: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+license: MIT
+donation: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2/donation
+issues: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2/issues
+source-code: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+website: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+
+platforms:
+  amd64:
+  arm64:
+    build-on: [amd64, arm64]
+    build-for: [arm64]
+
+parts:
+  ros-app:
+    plugin: dump
+    source: install
+    stage-packages:
+      - ctrlx-datalayer
+      - ctrlx-scheduler
+    override-build: |
+      craftctl default
+
+  wrapper-scripts:
+    plugin: dump
+    source: wrapper/
+    organize:
+      ./run-talker.sh : usr/bin/run-talker
+
+apps:
+  talker:
+    command: usr/bin/run-talker
+    plugs:
+      - ros-base
+      - network
+      - network-bind
+      - datalayer
+      - datalayer-shm
+      - process-control
+    daemon: simple
+    passthrough:
+      restart-condition: always
+      restart-delay: 10s
+    #environment:
+    #  TRACE_ENABLE_STDOUT: "true"
+    #  TRACE_ENABLE_UNITS: "common.scheduler.remote;common.scheduler.rt;common.scheduler.task"
+
+plugs:
+  ros-base:
+    interface: content
+    content: executables
+    target: $SNAP/rosruntime
+
+  datalayer:
+    interface: content
+    content: datalayer
+    target: $SNAP_DATA/.datalayer
+
+  datalayer-shm:
+    interface: shared-memory
+    shared-memory: datalayer-shm

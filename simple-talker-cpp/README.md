@@ -4,12 +4,12 @@ ROS 2 node which publishes messages under the topic `ros2_simple_cpp`.
 
 ## Prerequisites
 
-* `ros-base` snap. The base snap which provides the ROS 2 runtime binaries. Has to be installed on ctrlX OS. See [ROS 2 Humble Base Snap](../ros2-base-humble-deb/README.md).
+* `ros-base` snap. The base snap which provides the ROS 2 runtime binaries. Has to be installed on ctrlX OS. See [ROS 2 Jazzy Base Snap](../ros2-base-jazzy-deb/README.md).
 * An Ubuntu based build environment to build an app. See [ctrlX Automation SDK](https://github.com/boschrexroth/ctrlx-automation-sdk).
 
 ## Basis for this Project
 
-This project is based on the official ROS 2 Tutorial: [Writing a simple publisher and subscriber (C++)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-c).
+This project is based on the official ROS 2 Tutorial: [Writing a simple publisher and subscriber (C++)](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-c).
 
 ## Building a snap
 
@@ -30,8 +30,8 @@ This section defines the ROS 2 packages needed:
 
 And here the executables and their dependencies are defined:
 
-    add_executable(listener src/subscriber_member_function.cpp)
-    ament_target_dependencies(listener rclcpp std_msgs)
+    add_executable(talker src/subscriber_member_function.cpp)
+    ament_target_dependencies(talker rclcpp std_msgs)
 
 ### Snapcraft Configuration
 

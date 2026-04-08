@@ -34,8 +34,6 @@ SET ( PRIVATE_INCLUDE_DIRS
   ${CMAKE_CURRENT_LIST_DIR}
   ${CMAKE_CURRENT_BINARY_DIR}
   ${CMAKE_CURRENT_LIST_DIR}/include
-  ${USER_DEPENDENCY_DIR}/include
-  ${USER_DEPENDENCY_DIR}/include/comm.datalayer
   )
 
 # Set target link libraries

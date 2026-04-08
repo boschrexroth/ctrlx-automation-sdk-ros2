@@ -1,5 +1,5 @@
 {
-    "ros.distro": "humble",
+    "ros.distro": "jazzy",
     "files.associations": {
         "functional": "cpp",
         "new": "cpp"

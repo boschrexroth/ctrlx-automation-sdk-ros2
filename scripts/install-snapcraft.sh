@@ -1,4 +1,4 @@
-#!/usr/bin/env bash    
+#!/usr/bin/env bash
 
 etc_environment=$(cat /etc/environment)
 if [[ ${etc_environment} != *"SNAPCRAFT_BUILD_ENVIRONMENT=host"* ]];then
@@ -12,11 +12,11 @@ fi
 function  install_snapcraft() {
     echo ""
     echo "-------------------------------------------------------"
-    echo "install snapcraft 7.x"
+    echo "install snapcraft 8.x"
     echo "-------------------------------------------------------"
     echo ""
 
-    sudo snap install snapcraft --channel=7.x/stable --classic
+    sudo snap install snapcraft --channel=8.x/stable --classic
 }
 
 # Avoid return or exit, so that thsi sscript can be called from elsewhere
