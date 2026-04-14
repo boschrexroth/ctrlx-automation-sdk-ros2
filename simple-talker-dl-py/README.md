@@ -4,12 +4,12 @@
 
 This project implements a ROS 2 talker, which reads a ctrlX Data Layer value and publishes it as ROS 2 message.
 
-[Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-python) was used as template.
+[Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html#writing-a-simple-publisher-and-subscriber-python) was used as template.
 
 See also:
 
 * [Canonical Snapcraft - Deploying robotics applications](https://snapcraft.io/docs/robotics)
-* [Canonical - How to build a snap using ROS 2 Humble](https://canonical.com/blog/how-to-build-a-snap-using-ros-2-humble)
+* [Canonical - How to build a snap using ROS 2 Jazzy](https://canonical.com/blog/how-to-build-a-snap-using-ros-2-jazzy)
 
 ## Implementation
 

@@ -1,0 +1,109 @@
+name: ros2-base-jazzy
+version: 3.1.0
+summary: ROS 2 Jazzy base snap for ctrlX CORE
+description: |
+  Provides ROS 2 Jazzy for ROS 2 applications running on a for ctrlX CORE.
+title: ROS2 Jazzy
+contact: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+license: MIT
+donation: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2/donation
+issues: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2/issues
+source-code: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+website: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+
+base: core24
+grade: stable
+confinement: strict
+type: app
+
+platforms:
+  amd64:
+  arm64:
+    build-on: [amd64, arm64]
+    build-for: [arm64]
+
+parts:
+  ros-base:
+    plugin: colcon
+    build-packages: [make, gcc, g++]
+    stage-packages: [
+      software-properties-common,
+      ros-jazzy-ros-base,
+      python3-argcomplete,
+      ca-certificates
+    ]
+    build-environment:
+      - ROS_VERSION: '2'
+      - ROS_DISTRO: jazzy
+    source: ./
+
+  datalayer:
+    plugin: nil
+    stage-packages:
+      - ctrlx-datalayer
+
+  helper:
+    plugin: python
+    source: ./
+    build-environment:
+      - PYTHONPATH: "$CRAFT_PART_INSTALL/usr/lib/python3/dist-packages"
+    stage-packages:
+      #- python3-wheel
+      - python3.12-venv
+    python-packages:
+      - ctrlx-datalayer
+      - empy
+      - numpy<2         #runtime error: 'NumPy was built with baseline optimizations:' '(X86_V2) but your machine doesn't support:'
+      - rosdep
+      - rosdistro
+      - colcon-core
+      - lark
+
+slots:
+  ros-base:
+    interface: content
+    content: executables
+    read: [/]
+
+lint:
+  ignore:
+    - unused-library:
+      - opt/ros/*
+      - lib/*/libcrypt.so*
+      - lib/*/libexpat.so*
+      - lib/*/libtirpc.so*
+      - lib/*/libz.so*
+      - usr/lib/*/libatomic.so*
+      - usr/lib/*/libconsole_bridge.so*
+      - usr/lib/*/libfmt.so*
+      - usr/lib/*/libicui18n.so*
+      - usr/lib/*/libicuio.so*
+      - usr/lib/*/libicutest.so*
+      - usr/lib/*/libicutu.so*
+      - usr/lib/*/libpython3.12.so*
+      - usr/lib/*/libspdlog.so*
+      - usr/lib/*/libtinyxml2.so*
+      - usr/lib/*/libBullet3OpenCL_clew-float64.so*
+      - usr/lib/*/libBullet3OpenCL_clew.so*
+      - usr/lib/*/libBulletSoftBody-float64.so*
+      - usr/lib/*/libBulletSoftBody.so*
+      - usr/lib/*/libcomm_datalayer.so*
+      - usr/lib/*/libgstcheck-1.0.so*
+      - usr/lib/*/libgstnet-1.0.so*
+      - usr/lib/*/libgstcontroller-1.0.so*
+      - usr/lib/*/liblttng-ust-cyg-profile-fast.so*
+      - usr/lib/*/liblttng-ust-cyg-profile.so*
+      - usr/lib/*/liblttng-ust-dl.so*
+      - usr/lib/*/liblttng-ust-fd.so*
+      - usr/lib/*/liblttng-ust-fork.so*
+      - usr/lib/*/liblttng-ust-libc-wrapper.so*
+      - usr/lib/*/liblttng-ust-pthread-wrapper.so*
+      - usr/lib/*/liblttng-ust-python-agent.so*
+      - usr/lib/*/libunwind-coredump.so*
+      - usr/lib/*/libunwind-ptrace.so*
+      - usr/lib/*/libunwind-x86_64.so*
+      - usr/lib/*/liburcu-bp.so*
+      - usr/lib/*/liburcu-mb.so*
+      - usr/lib/*/liburcu-memb.so*
+      - usr/lib/*/liburcu-qsbr.so*
+      - usr/lib/*/liburcu-signal.so*

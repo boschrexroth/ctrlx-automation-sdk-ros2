@@ -1,4 +1,4 @@
-# ROS 2 Humble on ctrlX OS: A Snap Implementation of the ROS 2 Humble Distribution using ROS 2 Debian Package
+# ROS 2 Jazzy on ctrlX OS: A Snap Implementation of the ROS 2 Jazzy Distribution using ROS 2 Debian Package
 
 ## Introduction
 
@@ -23,13 +23,12 @@ The file `snap/snapcraft.yaml` defines how the base snap will be build.
 The snapcraft plugin [colcon](https://snapcraft.io/docs/colcon-plugin) is used to download Debian packages:
 
 * Needed during build process: make, gcc, g++
-* Needed at runtime: software-properties-common, ros-humble-ros-base, python3-argcomplete, ca-certificates, ctrlx-datalayer
+* Needed at runtime: software-properties-common, ros-jazzy-ros-base, python3-argcomplete, ca-certificates, ctrlx-datalayer
 
 ### Python Wheels
 
 The snapcraft plugin [python](https://snapcraft.io/docs/python-plugin) is used to download python wheels:
 
-* python3-wheel
 * ctrlx-datalayer
 * empy
 * numpy
@@ -61,7 +60,7 @@ We recommend using a native ARM64 host environment to compile the ARM64 code. Se
 
 ## About
 
-SPDX-FileCopyrightText: Copyright (c) 2023-2025 Bosch Rexroth AG
+SPDX-FileCopyrightText: Copyright (c) 2023-2026 Bosch Rexroth AG
 
 <https://www.boschrexroth.com/en/dc/imprint/>
 

@@ -1,18 +1,26 @@
 name: ros2-simple-listener-dl-cpp
-version: '2.4.0'
+version: 3.1.0
 summary: Snap with simple ROS 2 listener
 description: |
   A simple ROS 2 listener which receives ROS 2 messages on topic 'ros2_simple_cpp'.
 
-base: core22
+title: ROS2 Jazzy Simple Listener
+contact: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+license: MIT
+donation: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2/donation
+issues: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2/issues
+source-code: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+website: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+
+base: core24
 grade: stable
 confinement: strict
 type: app
 
-architectures:
-  - build-on: [amd64, arm64]
-    build-for: [amd64]
-  - build-on: [amd64, arm64]
+platforms:
+  amd64:
+  arm64:
+    build-on: [amd64, arm64]
     build-for: [arm64]
 
 parts:
@@ -47,7 +55,7 @@ plugs:
     interface: content
     content: executables
     target: $SNAP/rosruntime
-    
+
   datalayer:
     interface: content
     content: datalayer
@@ -57,4 +65,4 @@ lint:
   ignore:
     - library:
       - usr/lib/aarch64-linux-gnu/libcomm_datalayer.so.*
-      - usr/lib/x86_64-linux-gnu/libcomm_datalayer.so.*    
+      - usr/lib/x86_64-linux-gnu/libcomm_datalayer.so.*

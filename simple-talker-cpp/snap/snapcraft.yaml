@@ -1,17 +1,26 @@
 name: ros2-simple-talker-cpp
-version: '2.4.0'
+version: 3.1.0
 summary: Snap with simple ROS 2 talker
 description: |
   A simple ROS 2 talker publishes messages on topic 'ros2_simple_cpp'.
 
-base: core22
+base: core24
 grade: stable
 confinement: strict
 type: app
-architectures:
-  - build-on: [amd64, arm64]
-    build-for: [amd64]
-  - build-on: [amd64, arm64]
+
+title: ROS2 Jazzy Simple Talker
+contact: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+license: MIT
+donation: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2/donation
+issues: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2/issues
+source-code: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+website: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+
+platforms:
+  amd64:
+  arm64:
+    build-on: [amd64, arm64]
     build-for: [arm64]
 
 parts:
@@ -42,4 +51,3 @@ plugs:
     interface: content
     content: executables
     target: $SNAP/rosruntime
- 

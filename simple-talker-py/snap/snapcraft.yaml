@@ -1,18 +1,26 @@
 name: ros2-simple-talker-py
-version: '2.4.0'
+version: 3.1.0
 summary: Simple ROS 2 talker
 description: |
   A simple ROS 2 talker to ROS 2 topic 'MinimalPublisher'.
 
-base: core22
+base: core24
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: strict
 type: app
 
-architectures:
-  - build-on: [amd64, arm64]
-    build-for: [amd64]
-  - build-on: [amd64, arm64]
+title: ROS2 Jazzy Simple Listener
+contact: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+license: MIT
+donation: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2/donation
+issues: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2/issues
+source-code: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+website: https://github.com/boschrexroth/ctrlx-automation-sdk-ros2
+
+platforms:
+  amd64:
+  arm64:
+    build-on: [amd64, arm64]
     build-for: [arm64]
 
 parts:
@@ -20,7 +28,7 @@ parts:
   ros-app:
     plugin: dump
     source: install
-    stage-packages: [libpython3.10]
+    stage-packages: [libpython3.12]
     override-build: |
       craftctl default
 
@@ -51,4 +59,4 @@ plugs:
 lint:
   ignore:
     - library:
-      - usr/lib/x86_64-linux-gnu/libpython3.10.so.*     
+      - usr/lib/x86_64-linux-gnu/libpython3.12.so.*
