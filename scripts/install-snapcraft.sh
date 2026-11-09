@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Ensures required SNAPCRAFT_* env vars are set in /etc/environment, then makes sure
+# snapcraft is installed as the 8.x classic snap (reinstalling if a non-7.x version is found).
+
 etc_environment=$(cat /etc/environment)
 if [[ ${etc_environment} != *"SNAPCRAFT_BUILD_ENVIRONMENT=host"* ]];then
     sudo echo "SNAPCRAFT_BUILD_ENVIRONMENT=host" | sudo tee -a /etc/environment

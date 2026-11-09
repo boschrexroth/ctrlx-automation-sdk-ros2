@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Downloads the ctrlX Data Layer Debian packages (via install-ctrlx-datalayer-deb.sh,
+# optional $1 = SDK release version), then registers the local "deb" folder as a
+# trusted APT repository and installs the ctrlx-datalayer and ctrlx-scheduler
+# packages so that sample project snaps can be built against them.
+
 # Exit immediately if a command exits with a non-zero status.
 #set -e
 
@@ -9,6 +14,7 @@ echo "rootdir=$ROOT_DIR"
 
 rm -rf "${ROOT_DIR}"/deb
 
+# shellcheck source=/dev/null
 source "${ROOT_DIR}"/scripts/install-ctrlx-datalayer-deb.sh "${1}"
 pushd "${ROOT_DIR}"/deb || return
 

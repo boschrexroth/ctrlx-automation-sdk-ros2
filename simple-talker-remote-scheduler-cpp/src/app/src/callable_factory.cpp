@@ -34,7 +34,7 @@ CallableFactory::~CallableFactory()
 /*
   * @brief This method creates a new callable instance.
 */
-std::shared_ptr<common::scheduler::ICallable> CallableFactory::createCallable(const comm::datalayer::Variant &param)
+std::shared_ptr<common::scheduler::ICallable> CallableFactory::createCallable([[maybe_unused]] const comm::datalayer::Variant &param)
 {
   std::cout << std::source_location::current().function_name() << std::endl;
 
@@ -66,7 +66,7 @@ common::scheduler::SchedStatus CallableFactory::destroyCallable(const std::share
 /*
   * @brief This method retrieves the arguments for the callable.
 */
-common::scheduler::SchedStatus CallableFactory::getCallableArguments(std::vector<std::string> &arguments)
+common::scheduler::SchedStatus CallableFactory::getCallableArguments([[maybe_unused]] std::vector<std::string> &arguments)
 {
   std::cout << std::source_location::current().function_name() << std::endl;
 

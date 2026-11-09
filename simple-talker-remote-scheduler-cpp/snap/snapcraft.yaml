@@ -1,5 +1,5 @@
 name: ros2-simple-talker-rs-cpp
-version: 3.1.0
+version: 3.2.0
 summary: Snap with simple ROS 2 talker (Remote Scheduler)
 description: |
   A simple ROS 2 talker which receives ROS 2 messages on topic 'ros2_simple_cpp'.

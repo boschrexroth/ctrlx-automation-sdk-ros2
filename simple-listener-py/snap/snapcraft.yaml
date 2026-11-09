@@ -1,5 +1,5 @@
 name: ros2-listener-py
-version: 3.1.0
+version: 3.2.0
 summary: Simple ROS 2 listener
 description: |
   A simple ROS 2 listener to ROS 2 topic 'MinimalPublisher'.

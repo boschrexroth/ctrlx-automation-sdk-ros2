@@ -8,6 +8,7 @@ mkdir -p install/app
 rm -rf build/
 rm -rf log/
 
+# shellcheck source=/dev/null
 source "${ROOT_DIR}"/scripts/colcon-build.sh
 
 if [ $? -eq 0 ]

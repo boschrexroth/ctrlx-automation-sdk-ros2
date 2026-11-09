@@ -28,7 +28,7 @@ Callable::~Callable()
 common::scheduler::SchedEventResponse Callable::execute(
     const common::scheduler::SchedEventType &eventType,
     const common::scheduler::SchedEventPhase &eventPhase,
-    comm::datalayer::Variant &param)
+    [[maybe_unused]] comm::datalayer::Variant &param)
 {
   std::cout << std::source_location::current().function_name() << " event type: " << common::scheduler::getSchedEventTypeAsString(eventType) << " eventPhase " <<  common::scheduler::getSchedEventPhaseAsString(eventPhase) << std::endl;
   switch (eventType)
@@ -51,7 +51,7 @@ common::scheduler::SchedEventResponse Callable::execute(
 }
 
 //! The onEventTick method, called when a tick event occurs
-common::scheduler::SchedEventResponse Callable::onEventTick(const common::scheduler::SchedEventPhase &eventPhase, comm::datalayer::Variant &param)
+common::scheduler::SchedEventResponse Callable::onEventTick(const common::scheduler::SchedEventPhase &eventPhase, [[maybe_unused]] comm::datalayer::Variant &param)
 {
   std::cout << std::source_location::current().function_name() << " eventPhase " <<  common::scheduler::getSchedEventPhaseAsString(eventPhase) << std::endl;
   if (eventPhase == common::scheduler::SchedEventPhase::SCHED_EVENT_PHASE_NONE)
@@ -65,7 +65,7 @@ common::scheduler::SchedEventResponse Callable::onEventTick(const common::schedu
 }
 
 //! The onSwitchToExit method, called when a switch to exit event occurs
-common::scheduler::SchedEventResponse Callable::onSwitchToExit(const common::scheduler::SchedEventPhase &eventPhase, comm::datalayer::Variant &param)
+common::scheduler::SchedEventResponse Callable::onSwitchToExit(const common::scheduler::SchedEventPhase &eventPhase, [[maybe_unused]] comm::datalayer::Variant &param)
 {
   std::cout << std::source_location::current().function_name() << " eventPhase " <<  common::scheduler::getSchedEventPhaseAsString(eventPhase) << std::endl;
   if (eventPhase == common::scheduler::SchedEventPhase::SCHED_EVENT_PHASE_END)

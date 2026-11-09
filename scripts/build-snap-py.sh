@@ -2,6 +2,7 @@
 set -e
 
 ROOT_DIR=$(git rev-parse --show-toplevel)
+# shellcheck source=/dev/null
 source "${ROOT_DIR}"/scripts/colcon-build.sh
 
 if [ $? -eq 0 ]

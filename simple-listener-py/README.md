@@ -1,4 +1,4 @@
-# ROS 2 Simple Listener (Python)
+# ROS 2 Simple Listener (Subscriber) (Python)
 
 ## Introduction
 
@@ -22,56 +22,20 @@ See also:
 * It contains the main function and a class `MinimalSubscriber`, derived from `rclpy.node.Node`
 * `snap/snapcraft.yaml` defines which files are packed into the snap.
 
-## Build Process
+## Building a snap
 
-To build a snap run
+Building a snap with:
 
+```bash
     ./build-snap-amd64.sh
-
-The script contains following build steps:
-
-1. Build the colcon package:
-
-    colcon build
-
-2. Clean the snapcraft helper directories:
-
-    snapcraft clean --destructive-mode
-
-3. Update helper directories and build the snap:
-
-    snapcraft --destructive-mode
-
-Hint: To keep the project simple the arm64-cross-build is not supported.
-
-## Installation and Test
-
-Following snaps must already be installed:
-
-* `ros2-base`
-* `ros2-simple-talker`
-
-Install the created snap on a ctrlX OS.
-
-It listens at the ROS 2 topic `MinimalPublisher`.
-
-The output can be checked with:
-
-    sudo snap logs -f ros2-simple-listener
-
-## Build, install and test
-
-With following command you can combine the build, installation and test steps - here the target is a ctrlX CORE<sup>virtual</sup> with port forwarding.
-
-    ../../../public/scripts/build-upload-log-snap.sh -PF
+```
 
 ## About
 
-SPDX-FileCopyrightText: Copyright (c) 2023 Bosch Rexroth AG
+SPDX-FileCopyrightText: Copyright (c) 2026 Bosch Rexroth AG
 
 <https://www.boschrexroth.com/en/dc/imprint/>
 
 ## Licenses
 
 SPDX-License-Identifier: Apache-2.0
-

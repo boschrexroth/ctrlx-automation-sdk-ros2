@@ -2,6 +2,12 @@
 
 set -e
 
+# "https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"
+# Unauthenticated requests are associated with the originating IP address, and have a limit of 60 requests per hour.
+# Authenticated requests are associated with the authenticated user, or the OAuth application making the request,
+# and have a limit of 5,000 requests per hour.
+GITHUB_TOKEN_LOCAL=${GITHUB_TOKEN:-}
+
 # see: https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
 echo "Setup ROS2 Jazzy environment"
 
@@ -11,7 +17,7 @@ echo "Setup ROS2 Jazzy environment"
 echo "-- Set locale"
 locale  # check for UTF-8
 
-sudo apt update && sudo apt install locales
+sudo apt update && sudo apt install -y locales
 sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -23,20 +29,54 @@ locale  # verify settings
 #  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 echo "-- Add the ROS 2 apt repository"
 
-sudo apt install software-properties-common
+sudo apt install -y software-properties-common
+# Enable the "universe" repository, required for some ROS 2 dependencies
 sudo add-apt-repository universe -y
 
 ## Now add the ROS 2 GPG key with apt.
-sudo apt update && sudo apt install curl -y
-ROS_APT_SOURCE_VERSION=$(curl -s https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F "tag_name" | awk -F\" '{print $4}')
-export ROS_APT_SOURCE_VERSION
-curl -L -o /tmp/ros2-apt-source.deb "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.$(. /etc/os-release && echo ${UBUNTU_CODENAME:-${VERSION_CODENAME}})_all.deb"
-sudo dpkg -i /tmp/ros2-apt-source.deb
+sudo apt install curl -y
+
+# Downloads and installs the ros2-apt-source package to register the ROS 2 apt repository and GPG key
+# see https://github.com/ros-infrastructure/ros-apt-source
+setup_ros_apt_source() {
+  # 1. Query the latest version from GitHub
+  if [ -n "${GITHUB_TOKEN_LOCAL}" ]; then
+    ROS_APT_SOURCE_VERSION=$(curl -s -H "Authorization: Bearer ${GITHUB_TOKEN_LOCAL}" https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F "tag_name" | awk -F\" '{print $4}')
+  else
+    ROS_APT_SOURCE_VERSION=$(curl -s https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F "tag_name" | awk -F\" '{print $4}')
+  fi
+
+  export ROS_APT_SOURCE_VERSION
+
+  # If the API query fails, fall back to a stable version (e.g. 1.2.0 for Noble)
+  if [ -z "${ROS_APT_SOURCE_VERSION}" ]; then
+    ROS_APT_SOURCE_VERSION="1.2.0"
+  fi
+
+  # shellcheck source=/dev/null
+  # Determine the codename (noble for Ubuntu 24.04)
+  CODENAME=$(. /etc/os-release && echo "${UBUNTU_CODENAME:-${VERSION_CODENAME}}")
+
+  # 2. Download using the corrected URL path (no backslash before the underscore!)
+  if [ -n "${GITHUB_TOKEN_LOCAL}" ]; then
+    curl -L -H "Authorization: Bearer ${GITHUB_TOKEN_LOCAL}" -o /tmp/ros2-apt-source.deb \
+      "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.${CODENAME}_all.deb"
+  else
+    curl -L -o /tmp/ros2-apt-source.deb \
+      "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.${CODENAME}_all.deb"
+  fi
+
+  # 3. Install the package (registers repositories and GPG keys)
+  sudo dpkg -i /tmp/ros2-apt-source.deb
+}
+
+setup_ros_apt_source
 
 #  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # +++++++++ Install ROS 2 packages +++++++++
 #  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 echo "-- Install ROS 2 packages"
+# Refresh package index (now includes the ROS 2 repo) and upgrade existing packages
 sudo apt update && sudo apt upgrade -y
 
 ## ROS-Base Install (Bare Bones): Communication libraries, message packages, command line tools. No GUI tools.
@@ -44,4 +84,7 @@ sudo apt install -y ros-jazzy-ros-base
 
 ## Development tools: Compilers and other tools to build ROS packages
 sudo apt install -y ros-dev-tools
+
+# Update rosdep's local cache of package dependency information
+rosdep update
 

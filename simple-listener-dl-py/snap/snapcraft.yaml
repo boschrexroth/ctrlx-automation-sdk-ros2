@@ -1,5 +1,5 @@
 name: ros2-listener-dl-py
-version: 3.1.0
+version: 3.2.0
 summary: ROS 2 listener stores a received ROS 2 message into a ctrlX Data Layer node
 description: |
   A ROS 2 listener:

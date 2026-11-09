@@ -1,6 +1,6 @@
-# Simple ROS 2 Publisher in C++
+# Simple ROS 2 Talker (Publisher) in C++
 
-ROS 2 node which publishes messages under the topic `ros2_simple_cpp`.
+ROS 2 node which publishes messages under the topic `ros2_simple_talker_cpp`.
 
 ## Prerequisites
 
@@ -13,10 +13,13 @@ This project is based on the official ROS 2 Tutorial: [Writing a simple publishe
 
 ## Building a snap
 
-Building a snap has two steps:
+Building a snap with:
 
-1. Colcon build: CMakeLists.txt defines how compile and link the C++ sources.
-2. snap build: snap/snapcraft.yaml defines how the compiled binaries are packed into the snap and how they are called on the ctrlX CORE.
+```bash
+    ./build-snap-amd64.sh
+```
+
+The following provides important information about Colcon/Snap Build.
 
 ### Colcon Configuration
 
@@ -24,14 +27,18 @@ The colcon build tool is configured by `CMakeLists.txt`.
 
 This section defines the ROS 2 packages needed:
 
+```text
     find_package(ament_cmake REQUIRED)
     find_package(rclcpp REQUIRED)
     find_package(std_msgs REQUIRED)
+```
 
 And here the executables and their dependencies are defined:
 
-    add_executable(talker src/subscriber_member_function.cpp)
+```text
+    add_executable(talker src/publisher_member_function.cpp)
     ament_target_dependencies(talker rclcpp std_msgs)
+```
 
 ### Snapcraft Configuration
 
@@ -42,15 +49,9 @@ And here the executables and their dependencies are defined:
 * Two apps (talker and listener) are copied into the snap and started as services
 * The snap - respectively the executables - uses the content interface of the `ros-base` snap (here the ROS 2 runtime is provided).
 
-### Build the snap
-
-Start this script:
-
-    ./build-snap-amd64.sh
-
 ## About
 
-SPDX-FileCopyrightText: Copyright (c) 2023 Bosch Rexroth AG
+SPDX-FileCopyrightText: Copyright (c) 2026 Bosch Rexroth AG
 
 <https://www.boschrexroth.com/en/dc/imprint/>
 

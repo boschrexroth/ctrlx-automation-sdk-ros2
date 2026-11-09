@@ -1,4 +1,4 @@
-# ROS 2 Talker of a ctrlX Data Layer Value (Python)
+# ROS 2 Talker (Publisher) of a ctrlX Data Layer Value (Python)
 
 ## Introduction
 
@@ -20,49 +20,17 @@ See also:
 * `src/talker/ctrlx_datalayer/ctrlx_datalayer_helper.py` contains helper functions regarding ctrlX Data Layer
 * `snap/snapcraft.yaml` defines which files are packed into the snap.
 
-## Build process
+## Building a snap
 
-To build a snap run
+Building a snap with:
 
+```bash
     ./build-snap-amd64.sh
-
-The script contains following build steps:
-
-1. Build the colcon package:
-
-    colcon build
-
-2. Clean the snapcraft helper directories:
-
-    snapcraft clean --destructive-mode
-
-3. Update helper directories and build the snap:
-
-    snapcraft --destructive-mode
-
-Hint: Arm64-cross-build is not supported.
-
-## Installation and test
-
-The `ros2-base` snap must already be installed.
-
-Install the created snap on ctrlX OS.
-
-It publishes at the ROS 2 topic `MinimalPublisher`.
-
-The output can be checked with:
-
-    sudo snap logs -f ros2-simple-talker
-
-## Build, install and test
-
-With following command you can combine the build, installation and test steps - here the target is a ctrlX CORE<sup>virtual</sup> with port forwarding.
-
-    ../../../public/scripts/build-upload-log-snap.sh -PF
+```
 
 ## About
 
-SPDX-FileCopyrightText: Copyright (c) 2023 Bosch Rexroth AG
+SPDX-FileCopyrightText: Copyright (c) 2026 Bosch Rexroth AG
 
 <https://www.boschrexroth.com/en/dc/imprint/>
 

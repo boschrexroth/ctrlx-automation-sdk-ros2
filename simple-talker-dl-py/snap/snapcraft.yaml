@@ -1,5 +1,5 @@
 name: ros2-talker-dl-py
-version: 3.1.0
+version: 3.2.0
 summary: Publishes ctrlX Data Layer value to ROS 2
 description: |
   A ROS 2 talker:
