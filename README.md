@@ -29,7 +29,7 @@ Clone the **ctrlx-automation-sdk-ros2** repository :
 Go to a release tag in the repository:
 
 ```bash
-    git checkout v3.1.0
+    git checkout v3.2.0
 ```
 
 ```bash
