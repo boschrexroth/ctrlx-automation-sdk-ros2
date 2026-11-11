@@ -34,7 +34,7 @@ sudo apt install -y software-properties-common
 sudo add-apt-repository universe -y
 
 ## Now add the ROS 2 GPG key with apt.
-sudo apt install curl -y
+sudo apt install curl unzip -y
 
 # Downloads and installs the ros2-apt-source package to register the ROS 2 apt repository and GPG key
 # see https://github.com/ros-infrastructure/ros-apt-source
